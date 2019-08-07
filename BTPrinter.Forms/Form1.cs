@@ -35,6 +35,7 @@ namespace BTPrinter.Forms
             if (radio == null)
             {
                 MessageBox.Show("No bluetooth device connected");
+                return;
             }
             else
             {
