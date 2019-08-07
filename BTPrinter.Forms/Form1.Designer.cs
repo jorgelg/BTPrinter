@@ -46,9 +46,10 @@
             // 
             // imgVista
             // 
+            this.imgVista.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imgVista.Location = new System.Drawing.Point(110, 46);
             this.imgVista.Name = "imgVista";
-            this.imgVista.Size = new System.Drawing.Size(292, 341);
+            this.imgVista.Size = new System.Drawing.Size(406, 399);
             this.imgVista.TabIndex = 1;
             this.imgVista.TabStop = false;
             // 
@@ -71,7 +72,7 @@
             this.Controls.Add(this.imgVista);
             this.Controls.Add(this.BtnRecibirImagen);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Receptor de imagenes";
             ((System.ComponentModel.ISupportInitialize)(this.imgVista)).EndInit();
             this.ResumeLayout(false);
 
