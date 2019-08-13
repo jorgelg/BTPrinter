@@ -119,5 +119,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BTPrinter.BE\BTPrinter.BE.csproj">
+      <Project>{4F437EF3-C94C-4EF0-A30A-472931B8DD75}</Project>
+      <Name>BTPrinter.BE</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

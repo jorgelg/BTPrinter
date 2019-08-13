@@ -1,4 +1,5 @@
-﻿using InTheHand.Net;
+﻿using BTPrinter.BE.Negocio.Reglas;
+using InTheHand.Net;
 using InTheHand.Net.Bluetooth;
 using InTheHand.Net.Sockets;
 using PdfSharp.Drawing;
@@ -31,44 +32,30 @@ namespace BTPrinter.Forms
         {
             //var radios = BluetoothRadio.AllRadios;
 
-            BluetoothRadio radio = BluetoothRadio.PrimaryRadio;
-            if (radio == null)
+            try
             {
-                MessageBox.Show("No bluetooth device connected");
-                return;
+                GestionDispositivos gestion = new GestionDispositivos();
+                archivo=gestion.IniciarRecepcionImagenBT();
+                imgVista.Refresh();
+                imgVista.Image = Image.FromStream(archivo);
+                imgVista.SizeMode = PictureBoxSizeMode.StretchImage;
             }
-            else
+            catch(Exception ex)
             {
-                radio.Mode = RadioMode.Discoverable;
+                MessageBox.Show(ex.Message);
             }
+            #region Buscar dispositivo
+
             //BluetoothClient cliente = new BluetoothClient();
             //BluetoothDeviceInfo[] lista= cliente.DiscoverDevices(20, true, true, true);
             //BluetoothListener servidor = new BluetoothListener(BluetoothService.L2CapProtocol);
-            
+
             //servidor.Authenticate = true;
             //servidor.ServiceClass = ServiceClass.Capturing | ServiceClass.ObjectTransfer;
             //servidor.ServiceName = "cliente ftp";
             //servidor.Start();
+            #endregion
 
-            ObexListener receptorImagenes = new ObexListener(ObexTransport.Bluetooth);
-            receptorImagenes.Start();
-            MessageBox.Show("Esperando imagen","Receptor Imagenes",MessageBoxButtons.OK);
-            ObexListenerContext contexto = receptorImagenes.GetContext();
-            MessageBox.Show("Imagen Recibida", "Receptor Imagenes", MessageBoxButtons.OK);
-
-            ObexListenerRequest req = contexto.Request;
-
-            string archivoDireccion = req.RawUrl;
-            string extension = req.RawUrl.Split('.').ToList().LastOrDefault();
-            archivo = new MemoryStream();
-            req.InputStream.CopyTo(archivo);
-            string b64 = Convert.ToBase64String(archivo.ToArray());
-            //req.WriteFile("."+ archivoDireccion);
-            //File.WriteAllBytes("./b64." + extension, archivo.ToArray());
-            receptorImagenes.Stop();
-            imgVista.Refresh();
-            imgVista.Image = Image.FromStream(archivo);
-            imgVista.SizeMode = PictureBoxSizeMode.StretchImage;
             #region Redimensionar imagen
             //byte[] imageBytes;
 
@@ -96,16 +83,9 @@ namespace BTPrinter.Forms
 
         private void BtnImprimir_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Imprimiendo imagen", "Receptor Imagenes", MessageBoxButtons.OK);
-            PdfDocument documento = new PdfDocument();
-            PdfPage pagina = documento.AddPage();
-            XGraphics graficador = XGraphics.FromPdfPage(pagina);
-            //imgVista.Image.Save(archivo, ImageFormat.Bmp);
-            graficador.DrawImage(XImage.FromStream(archivo),0,0,imgVista.Width,imgVista.Height);
-            string nombreArchivo = "impresion.pdf";
-            documento.Save(nombreArchivo);
-            Process.Start(nombreArchivo);
-            documento.Close();
+            //MessageBox.Show("Imprimiendo imagen", "Receptor Imagenes", MessageBoxButtons.OK);
+            GestionDispositivos gestion = new GestionDispositivos();
+            gestion.ImprimirArchivo(archivo,imgVista.Width,imgVista.Height);
         }
     }
 }
