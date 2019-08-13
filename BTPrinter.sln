@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTPrinter.BE", "BTPrinter.B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTPrinter.Forms", "BTPrinter.Forms\BTPrinter.Forms.csproj", "{58BF4DA0-09C4-4137-AF6D-FC418DD1AB25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTPrinter.Test", "BTPrinter.Test\BTPrinter.Test.csproj", "{EF883495-32AD-4E50-BEDA-972C5B29ABB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{58BF4DA0-09C4-4137-AF6D-FC418DD1AB25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58BF4DA0-09C4-4137-AF6D-FC418DD1AB25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58BF4DA0-09C4-4137-AF6D-FC418DD1AB25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF883495-32AD-4E50-BEDA-972C5B29ABB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF883495-32AD-4E50-BEDA-972C5B29ABB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF883495-32AD-4E50-BEDA-972C5B29ABB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF883495-32AD-4E50-BEDA-972C5B29ABB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
